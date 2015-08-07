@@ -1,6 +1,13 @@
 package org.stjs.bridge.rsvp;
 
-public class SettleResult<Result, FailResult> {
+public final class SettleResult<Result, FailResult> {
+
+	/**
+	 * Hidden constructor to prevent direct construction
+	 */
+	private SettleResult() {
+	}
+
 	/**
 	 * Either "fulfilled" or "rejected"
 	 */

@@ -1,11 +1,6 @@
 package org.stjs.bridge.rsvp;
 
 /**
- * Deferred
- * <p/>
- * The RSVP.Promise constructor is generally a better, less error-prone choice than <tt>RSVP.defer()</tt>.
- * Promises are recommended unless the specific properties of deferred are needed.
- * <p/>
  * Sometimes one needs to create a deferred object, without immediately specifying how it will be resolved.
  * These deferred objects are essentially a wrapper around a promise, whilst providing late access to the
  * <tt>resolve()</tt> and <tt>reject()</tt> methods.
@@ -16,8 +11,11 @@ package org.stjs.bridge.rsvp;
  * // ...
  * deferred.resolve("Hello");
  * </pre>
+ * <p/>
+ * The RSVP.Promise constructor is generally a better, less error-prone choice than <tt>RSVP.defer()</tt>.
+ * Promises are recommended unless the specific properties of deferred are needed.
  */
-public class Deferred<Result, FailResponse> {
+public final class Deferred<Result, FailResponse> {
 
 	/**
 	 * Hidden constructor to prevent direct construction of a Deferred. Use RSVP.defer() instead.
