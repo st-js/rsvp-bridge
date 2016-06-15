@@ -2,6 +2,7 @@ package org.stjs.bridge.rsvp;
 
 import org.stjs.javascript.annotation.Namespace;
 import org.stjs.javascript.annotation.Template;
+import org.stjs.javascript.functions.Callback0;
 import org.stjs.javascript.functions.Callback1;
 import org.stjs.javascript.functions.Callback2;
 import org.stjs.javascript.functions.Function1;
@@ -69,6 +70,14 @@ public final class Promise<Result, FailResult> {
 	 */
 	public Promise(Callback2<Callback1<Result>, Callback1<FailResult>> handler) {
 	}
+
+	/**
+	 * Calls the specified callback when the promise is resolved.
+	 *
+	 * @param success a callback executed when the promise is resolved.
+	 * @return a promise that can be chained with more callbacks
+	 */
+	public native Promise<Result, FailResult> then(Callback0 success);
 
 	/**
 	 * Calls the specified callback when the promise is resolved. The specified callback receives the resolution value
@@ -155,5 +164,24 @@ public final class Promise<Result, FailResult> {
 	public native <NewResult, NewFailResult> Promise<NewResult, NewFailResult> thenPromise(
 			Function1<? super Result, Promise<NewResult, NewFailResult>> success,
 			Function1<? super FailResult, Promise<NewResult, NewFailResult>> failure);
+
+	/**
+	 * Calls the specified callbacks regardless of the promise's fate.
+	 *
+	 * @param callback a callback executed when the promise is resolved.
+	 * @return a promise that can be chained with more callbacks
+	 */
+	@Template("suffix(Callback)")
+	public native Promise<Result, FailResult> finallyCallback(Callback0 callback);
+
+	/**
+	 * Calls the specified callbacks when the promise is rejected. The specified callbacks
+	 * receives the rejection value as parameter.
+	 *
+	 * @param callback a callback executed when the promise is rejected.
+	 * @return a promise that can be chained with more callbacks
+	 */
+	@Template("suffix(Callback)")
+	public native Promise<Result, FailResult> catchCallback(Callback1<FailResult> callback);
 
 }
