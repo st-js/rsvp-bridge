@@ -11,6 +11,16 @@ import org.stjs.javascript.functions.Function1;
 public final class Promise<Result, FailResult> {
 
 	/**
+	 * The function returns a Promise that is resolved.
+	 */
+	public static native <Result, FailResult> Promise<Result, FailResult> resolve();
+
+	/**
+	 * The method returns a Promise.then object that is resolved with the given value. 
+	 */
+	public static native <Result, FailResult> Promise<Result, FailResult> resolve(Result value);
+
+	/**
 	 * Constructs a new Promise instance where the resolution or rejection state is controlled by the specified
 	 * handler function.
 	 * <p/>
